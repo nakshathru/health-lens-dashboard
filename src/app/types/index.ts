@@ -7,3 +7,4 @@ export * from './medical-history.type';
 export * from './vitals.type';
 export * from './medication.type';
 export * from './request';
+export * from './healthlens.type';

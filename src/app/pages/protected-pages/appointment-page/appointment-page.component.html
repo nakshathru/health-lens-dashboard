@@ -15,7 +15,7 @@
         <th mat-header-cell *matHeaderCellDef>patientId</th>
         <td mat-cell *matCellDef="let appointment">
           <a [routerLink]="['/patient', appointment.patientId]">
-            {{ appointment.patientId }}
+            {{ faker.person.fullName() }}
           </a>
         </td>
       </ng-container>

@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { faker } from '@faker-js/faker';
 
 @Component({
   selector: 'hl-appointment-page',
@@ -15,6 +16,7 @@ export class AppointmentPageComponent implements OnInit {
   dataSource = new MatTableDataSource<{ patientId: string }>();
   pageIndex: number = 0;
   pageSize: number = 5;
+  faker = faker;
   dateForm = new FormGroup({
     date: new FormControl(),
   });

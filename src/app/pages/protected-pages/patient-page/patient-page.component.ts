@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PatientService } from 'src/app/services/patient.service';
-import { Appointment, BasicAppointment } from 'src/app/types';
+import { Appointment, BasicAppointment, Healthlens } from 'src/app/types';
 import { PatientResponse } from 'src/app/types/response/patient.response.type';
 
 @Component({
@@ -18,6 +18,7 @@ export class PatientPageComponent implements OnInit {
   };
   rawData? = '';
   loading = false;
+  healthlensData?: Healthlens;
   constructor(
     private _route: ActivatedRoute,
     private _patientSvc: PatientService
@@ -32,7 +33,10 @@ export class PatientPageComponent implements OnInit {
         console.log(datas);
         datas?.forEach((data) => {
           if (data?.type === 'raw') this.rawData = data?.conversation?.channel1;
-          if (data?.type === 'extracted') this.patientData = data?.data;
+          if (data?.type === 'extracted')
+            this.patientData = data?.data as BasicAppointment;
+          if (data?.type === 'openAI')
+            this.healthlensData = data?.data as Healthlens;
         });
         this.loading = false;
       })

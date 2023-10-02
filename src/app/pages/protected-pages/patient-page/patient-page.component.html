@@ -3,9 +3,9 @@
 </mat-toolbar>
 <br />
 
-<div *ngIf="patientData">
+<div>
   <!-- Patient information -->
-  <mat-card>
+  <mat-card *ngIf="patientData">
     <mat-card-header>
       <mat-card-title>
         <mat-icon
@@ -32,8 +32,51 @@
   </mat-card>
   <br />
 
+  <!-- Healthlens -->
+  <mat-card *ngIf="healthlensData">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon aria-hidden="false" class="vab" fontIcon="search"></mat-icon>
+        Healthlens
+      </mat-card-title>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <table class="w-100 ta-left">
+        <tr>
+          <th>Causes</th>
+        </tr>
+        <tr>
+          <td>{{ healthlensData.causes }}</td>
+        </tr>
+        <br />
+        <tr>
+          <th>Symptoms</th>
+        </tr>
+        <tr>
+          <td>{{ healthlensData.symptoms }}</td>
+        </tr>
+        <br />
+        <tr>
+          <th>Diagnosis</th>
+        </tr>
+        <tr>
+          <td>{{ healthlensData.diagnosis }}</td>
+        </tr>
+        <br />
+        <tr>
+          <th>Medication</th>
+        </tr>
+        <tr>
+          <td>{{ healthlensData.medication }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <br />
+
   <!-- Symptoms -->
-  <mat-card *ngIf="patientData.symptoms">
+  <mat-card *ngIf="patientData?.symptoms">
     <mat-card-header>
       <mat-card-title>
         <mat-icon
@@ -47,7 +90,7 @@
     <br />
     <mat-card-content>
       <table class="w-50 ta-left">
-        <tr *ngFor="let symptom of patientData.symptoms">
+        <tr *ngFor="let symptom of patientData?.symptoms">
           {{
             symptom
           }}
@@ -58,7 +101,7 @@
   <br />
 
   <!-- Existing medication -->
-  <mat-card *ngIf="patientData.existingMedication">
+  <mat-card *ngIf="patientData?.existingMedication">
     <mat-card-header>
       <mat-card-title>
         <mat-icon aria-hidden="false" class="vab" fontIcon="healing"></mat-icon>
@@ -73,38 +116,10 @@
           <th>Dosage</th>
           <th>Frequency</th>
         </tr>
-        <tr *ngFor="let med of patientData.existingMedication">
+        <tr *ngFor="let med of patientData?.existingMedication">
           <td>{{ med.name }}</td>
           <td>{{ med.dosage }}</td>
           <td>{{ med.frequency }}</td>
-        </tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
-  <br />
-
-  <!-- Treatment -->
-  <mat-card *ngIf="treatment.doctor && treatment.ai">
-    <mat-card-header>
-      <mat-card-title>
-        <mat-icon
-          aria-hidden="false"
-          class="vab"
-          fontIcon="local_hospital"
-        ></mat-icon>
-        Treatment
-      </mat-card-title>
-    </mat-card-header>
-    <br />
-    <mat-card-content>
-      <table class="w-100 ta-left">
-        <tr>
-          <th>Doctor's treatment</th>
-          <th>AI Suggestion</th>
-        </tr>
-        <tr>
-          <td>{{ treatment.doctor }}</td>
-          <td>{{ treatment.ai }}</td>
         </tr>
       </table>
     </mat-card-content>
@@ -134,7 +149,7 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<div *ngIf="!loading && !patientData">
+<div *ngIf="!loading && !patientData && !rawData && !healthlensData">
   <mat-card>
     <mat-card-header>
       <mat-card-title>

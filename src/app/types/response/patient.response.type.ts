@@ -1,4 +1,5 @@
 import { BasicAppointment } from '../appointment.type';
+import { Healthlens } from '../healthlens.type';
 
 export type PatientResponse = {
   patientId: string;
@@ -7,5 +8,6 @@ export type PatientResponse = {
     channel1: string;
     channel2: string;
   };
-  data?: BasicAppointment;
+  data?: BasicAppointment | Healthlens;
+  healthlens?: Healthlens;
 };
