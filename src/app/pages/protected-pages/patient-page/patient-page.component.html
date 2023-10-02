@@ -1,0 +1,150 @@
+<mat-toolbar>
+  <span class="content">Patient Id: {{ id }}</span>
+</mat-toolbar>
+<br />
+
+<div *ngIf="patientData">
+  <!-- Patient information -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon
+          aria-hidden="false"
+          class="vab"
+          fontIcon="account_circle"
+        ></mat-icon>
+        Patient Information
+      </mat-card-title>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <table class="w-50 ta-left">
+        <tr>
+          <th>Name</th>
+          <td>{{ patientData.name }}</td>
+        </tr>
+        <tr>
+          <th>Age</th>
+          <td>{{ patientData.age }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <br />
+
+  <!-- Symptoms -->
+  <mat-card *ngIf="patientData.symptoms">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon
+          aria-hidden="false"
+          class="vab"
+          fontIcon="accessibility"
+        ></mat-icon>
+        Symptoms
+      </mat-card-title>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <table class="w-50 ta-left">
+        <tr *ngFor="let symptom of patientData.symptoms">
+          {{
+            symptom
+          }}
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <br />
+
+  <!-- Existing medication -->
+  <mat-card *ngIf="patientData.existingMedication">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon aria-hidden="false" class="vab" fontIcon="healing"></mat-icon>
+        Existing Medication
+      </mat-card-title>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <table class="w-100 ta-left">
+        <tr>
+          <th>Name</th>
+          <th>Dosage</th>
+          <th>Frequency</th>
+        </tr>
+        <tr *ngFor="let med of patientData.existingMedication">
+          <td>{{ med.name }}</td>
+          <td>{{ med.dosage }}</td>
+          <td>{{ med.frequency }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <br />
+
+  <!-- Treatment -->
+  <mat-card *ngIf="treatment.doctor && treatment.ai">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon
+          aria-hidden="false"
+          class="vab"
+          fontIcon="local_hospital"
+        ></mat-icon>
+        Treatment
+      </mat-card-title>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <table class="w-100 ta-left">
+        <tr>
+          <th>Doctor's treatment</th>
+          <th>AI Suggestion</th>
+        </tr>
+        <tr>
+          <td>{{ treatment.doctor }}</td>
+          <td>{{ treatment.ai }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <br />
+
+  <!-- Raw Data -->
+  <mat-card *ngIf="rawData">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon
+          aria-hidden="false"
+          class="vab"
+          fontIcon="description"
+        ></mat-icon>
+        Raw Data
+      </mat-card-title>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      {{ rawData }}
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!loading && !patientData">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon
+          aria-hidden="false"
+          class="vab"
+          fontIcon="account_circle"
+        ></mat-icon>
+        Patient data not found
+      </mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>

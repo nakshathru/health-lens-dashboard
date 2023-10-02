@@ -1,8 +1,21 @@
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
+mat-toolbar {
+  height: 45px;
+}
 
 .drawer-container {
   width: 100%;
-  height: calc(100% - var(--mat-toolbar-standard-height));
+  height: calc(100% - 90px);
+}
+
+.content {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
 
 mat-drawer-content {

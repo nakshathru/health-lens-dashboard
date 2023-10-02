@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
+import { ProtectedPagesModule } from './pages/protected-pages/protected-pages.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,7 +14,10 @@ import { ComponentsModule } from './components/components.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    // Remove later
     ComponentsModule,
+    ProtectedPagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

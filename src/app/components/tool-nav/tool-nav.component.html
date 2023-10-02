@@ -10,8 +10,19 @@
 </mat-toolbar>
 
 <mat-drawer-container class="drawer-container" [hasBackdrop]="true">
-  <mat-drawer #drawer [mode]="'over'">I'm a drawer</mat-drawer>
+  <mat-drawer #drawer [mode]="'over'">
+    <button
+      [routerLink]="['/appointments']"
+      routerLinkActive="router-link-active"
+      mat-flat-button
+      (click)="drawer.toggle()"
+    >
+      Appointments
+    </button>
+  </mat-drawer>
   <mat-drawer-content>
-    <ng-content></ng-content>
+    <div class="content pt-3 pb-3">
+      <ng-content></ng-content>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>
