@@ -12,7 +12,7 @@ import { faker } from '@faker-js/faker';
 })
 export class AppointmentPageComponent implements OnInit {
   appointmentLength: number = 100;
-  displayedColumns: string[] = ['position', 'patientId'];
+  displayedColumns: string[] = ['position', 'patientName', 'patientId'];
   dataSource = new MatTableDataSource<{ patientId: string }>();
   pageIndex: number = 0;
   pageSize: number = 5;
